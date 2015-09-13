@@ -20,15 +20,13 @@ def decrypt(cipher, key):
         decrypted.append(chr(int(values[0]) ^ ord(values[1])))
     decrypted = ''.join(decrypted)
     if all(word in decrypted for word in commonWords):
-        print decrypted
-        print "=" * 80
         return decrypted
          
 def asciiSum(string):
     total = 0
     for char in string:
         total += ord(char)
-    print total 
+    return total 
 
 with open("cipher.txt", "r") as fd:
     cipherText = fd.read()
@@ -41,6 +39,7 @@ for a in alphaList():
             key = _cycle(a + b + c, len(cipherText))
             decryptedText = decrypt(cipherText, key)
             if decryptedText:
-                asciiSum(decryptedText) 
+                print decryptedText
+                print asciiSum(decryptedText) 
                 
 
