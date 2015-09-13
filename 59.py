@@ -1,3 +1,5 @@
+# https://projecteuler.net/problem=59
+
 def alphaList():
     return [x for x in list(map(chr, range(97, 123)))]
 
