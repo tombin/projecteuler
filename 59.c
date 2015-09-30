@@ -28,6 +28,10 @@ int length(FILE *fp) {
 
 int decryptfile(char *key) {
     FILE *fp = fopen("cipher.txt", "r");
+    if(fp == NULL) { 
+        puts("input file failure");
+        exit(EXIT_FAILURE);
+    }
     char *tokens;
     char *comma = ",";
     int counter = 0;
@@ -41,9 +45,9 @@ int decryptfile(char *key) {
     while((fgets(line, sizeof(line), fp)) != NULL) {
         tokens = strtok(line, comma);
         while(tokens && strncmp(tokens, "\n", 2)) {
-            keyValue = (int)key[counter];
-            curValue = (int)atoi(tokens);
-            newstring[index] = (char)(curValue ^ keyValue);
+            keyValue = key[counter];
+            curValue = atoi(tokens);
+            newstring[index] = (curValue ^ keyValue);
             index++;
             if(counter == strlen(key) - 1)
                 counter = 0;
